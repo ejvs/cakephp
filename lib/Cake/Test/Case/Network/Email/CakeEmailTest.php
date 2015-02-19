@@ -2455,6 +2455,10 @@ HTML;
  * @return void
  */
 	public function testDefaultConfig() {
+		if (file_exists(APP . 'Config' . DS . 'email.php')) {
+			$this->markTestSkipped('Running this test might nuke a user\'s config file.');
+		}
+
 		$defaultConfig = new File(APP . 'Config' . DS . 'email.php.default');
 		$emailConfig = new File(APP . 'Config' . DS . 'email.php');
 		$hasConfig = $emailConfig->exists();
